@@ -1,0 +1,76 @@
+apiVersion: v1
+kind: configMap
+metadata:
+  name: mysql-config
+  namespace: roboshop
+data:
+  MYSQL_ROOT_PASSWORD: "Um9ib1Nob3BAMQ=="
+  MYSQL_DATABASE: "cities"
+  MYSQL_USER: "shipping"
+  MYSQL_PASSWORD: "RoboShop@1"
+---
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: mysql
+  namespace: roboshop
+  labels:
+    app: mysql
+    project: roboshop
+    tier: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+      project: roboshop
+      tier: db
+  template:
+    metadata:
+      labels:
+        app: mysql
+        project: roboshop
+        tier: db
+    spec:
+      containers:
+        - name: mysql
+          image: satish/mysql:v1
+          imagePullPolicy: Always
+          envfrom:
+            - configMapRef:
+                name: mysql-config
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+          volumes:
+            - name: mysql-persistent-storage
+              persistentVolumeClaim:
+                claimName: mysql-pv-claim
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+  namespace: roboshop
+type: Opaque
+data:
+  password: Um9ib1Nob3BAMQ==
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  namespace: roboshop
+spec:
+  type: ClusterIP
+  selector:
+    app: mysql
+    project: roboshop
+    tier: db
+  ports:
+    - name: mysql
+      protocol: TCP
+      port: 3306
+      targetPort: 3306

@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq
+  namespace: roboshop
+  labels:
+    app: rabbitmq
+    project: roboshop
+    tier: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbitmq
+      project: roboshop
+      tier: db
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+        project: roboshop
+        tier: db
+    spec:
+      containers:
+        - name: rabbitmq
+          image: rabbitmq:3.8
+          ports:
+            - containerPort: 5672
+            - containerPort: 15672
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq
+  namespace: roboshop
+spec:
+  type: ClusterIP
+  selector:
+    app: rabbitmq
+    project: roboshop
+    tier: db
+  ports:
+    - name: rabbitmq
+      protocol: TCP
+      port: 5672
+      targetPort: 5672
+    - name: rabbitmq-mgmt
+      protocol: TCP
+      port: 15672
+      targetPort: 15672
+```
