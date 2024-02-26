@@ -30,9 +30,15 @@ kubectl logs <pod-name> -n <namespace>
     once kubens is set to roboshop, we need not to give -n roboshop
     then kubectl logs <pod-name>
 
-commans to see services
+# command to see services
 kubectl get svc
 
+# command to delete pod
+kubectl delete pod <pod-name> -n <namespace>
+    once kubens is set to roboshop, we need not to give -n roboshop
+    then kubectl delete pod <pod-name>
+
+    once pad 
 
 
 
