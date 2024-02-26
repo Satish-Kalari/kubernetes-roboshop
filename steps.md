@@ -36,6 +36,11 @@ kubectl get svc
 
 
 
+# apiVersion: apps/v1 vs apiVersion: v1
+    apiVersion: apps/v1 is used for deployment, statefulset, daemonset
+    apiVersion: v1 is used for service, pod, namespace, configmap, secret, persistentvolume, persistentvolumeclaim, resourcequota, limitrange, replicationcontroller, poddisruptionbudget, priorityclass, serviceaccount, customresourcedefinition, podpreset, podsecuritypolicy
 
-kubectx # to see all the context
-kubens # to see all the namespace
+
+# difference between kubectx and kubens
+    kubectx is used to switch between different kubernetes cluster
+    kubens is used to switch between different namespace in the same cluster
