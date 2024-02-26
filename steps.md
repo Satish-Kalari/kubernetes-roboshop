@@ -11,13 +11,42 @@ then cd kubernetes-roboshop/catalogue
     kubens roboshop #this will set roboshop namespace as default, so every time we need not to give -n roboshop
     example: kubectl get pods instead of kubectl get pods -n roboshop
  
+docker login
+    username: satishkalari
+    password: satish123
 
 docker build -t satishkalari/mongodb:v1 .
-docker login
 docker push satishkalari/mongodb:v1
 
 kubectl apply -f manifest.yaml
-kubectl create deployment mongodb --image=satishkalari/mongodb:v1
+
+# command to see services
+kubectl get svc
+
+# command to see pods
+kubectl get pods
+
+# command to see deployments
+kubectl get deployments
+
+# command to see statefulset
+kubectl get statefulset
+
+# command to see daemonset
+kubectl get daemonset
+
+# command to see configmap
+kubectl get configmap
+
+# command to see secret
+kubectl get secret
+
+# command to see persistentvolume
+kubectl get persistentvolume
+
+# command to see namespace
+kubectl get namespace
+
 
 
 # command to see if one pad is connection with other pod
@@ -30,16 +59,12 @@ kubectl logs <pod-name> -n <namespace>
     once kubens is set to roboshop, we need not to give -n roboshop
     then kubectl logs <pod-name>
 
-# command to see services
-kubectl get svc
-
 # command to delete pod
 kubectl delete pod <pod-name> -n <namespace>
     once kubens is set to roboshop, we need not to give -n roboshop
     then kubectl delete pod <pod-name>
 
-    once pad 
-
+***once pad is deleted git pull updated code and apply the manifest file again then if we delete the pod, it will create new pod with updated code***
 
 
 # apiVersion: apps/v1 vs apiVersion: v1
