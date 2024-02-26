@@ -33,7 +33,7 @@ spec:
         - name: catalogue
           image: satishkalari/catalogue:v1
           imagePullPolicy: Always
-          envfrom:
+          envFrom:
             - configMapRef:
                 name: catalogue-config
 ---
