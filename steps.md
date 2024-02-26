@@ -30,6 +30,8 @@ kubectl logs <pod-name> -n <namespace>
     once kubens is set to roboshop, we need not to give -n roboshop
     then kubectl logs <pod-name>
 
+commans to see services
+kubectl get svc
 
 
 
