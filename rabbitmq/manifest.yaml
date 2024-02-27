@@ -35,8 +35,8 @@ spec:
         - name: rabbitmq
           image: rabbitmq:3.8
           envFrom:
-            - secretRef:
-                name: rabbitmq-secret         
+          - secretRef:
+              name: rabbitmq-secret         
           imagePullPolicy: Always
 ---
 apiVersion: v1
