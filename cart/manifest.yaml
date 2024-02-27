@@ -38,10 +38,10 @@ spec:
       containers:
         - name: cart
           image: "satishkalari/cart:v1"
+          imagePullPolicy: Always
           envFrom:
             - configMapRef:
-                name: cart-config        
-          imagePullPolicy: Always
+                name: cart-config             
 
 ---
 apiVersion: v1
