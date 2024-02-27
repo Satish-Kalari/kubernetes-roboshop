@@ -16,6 +16,7 @@ then cd kubernetes-roboshop/catalogue
     example: kubectl get pods instead of kubectl get pods -n roboshop
  
 docker hub login
+    sudo docker login
     username: satishkalari
     password: satish123
 
