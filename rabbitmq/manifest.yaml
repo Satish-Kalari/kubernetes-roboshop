@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
         - name: rabbitmq
-          image: rabbitmq:3.8
+          image: rabbitmq
           envFrom:
           - secretRef:
               name: rabbitmq-secret         
