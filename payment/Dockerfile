@@ -4,7 +4,7 @@ EXPOSE 8080
 # Following variable user anme and passowrd is for payment to intract with rabbitmq
 # ENV AMQP_USER=roboshop \ # givem via k8 secret
 #     AMQP_PASS=roboshop123 # givem via k8 secret
-USER root # change the user to root
+USER root 
 WORKDIR /app
 COPY requirements.txt /app/
 RUN pip install -r requirements.txt
