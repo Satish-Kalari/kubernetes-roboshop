@@ -18,7 +18,7 @@ data:
   MYSQL_USER: c2hpcHBpbmc=
 
 ---
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql

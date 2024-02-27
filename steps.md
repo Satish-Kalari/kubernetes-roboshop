@@ -1,4 +1,5 @@
 Once eks cluster is created, we can use kubectl to interact with the cluster. 
+   - look at kubernetes/ecsctl/Cluster-SettingUp.md for more details to setup cluster
 
 access workstation via supper putty
 
@@ -22,6 +23,13 @@ docker build -t satishkalari/mongodb:v1 .
 docker push satishkalari/mongodb:v1
 
 kubectl apply -f manifest.yaml
+
+# to see logs of pod
+kubectl logs <pod-name> -n <namespace>, 
+    no namespace is required if kubens is set to roboshop
+
+# command to see nodes
+kubectl get nodes
 
 # command to see services
 kubectl get svc

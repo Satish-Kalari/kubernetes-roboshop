@@ -16,20 +16,20 @@ kind: Deployment
 metadata:
   name: shipping
   namespace: roboshop
-  labels:
+  labels: # Labels are used to select the Pods and Services
     app: shipping
     project: roboshop
     tier: app
 spec:
   replicas: 1
   selector:
-    matchLabels:
+    matchLabels: # Select the Pods based on labels to manage the Pods
       app: shipping
       project: roboshop
       tier: app
   template:
     metadata:
-      labels:
+      labels: # The labels in Pod template
         app: shipping
         project: roboshop
         tier: app
