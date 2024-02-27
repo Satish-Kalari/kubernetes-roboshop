@@ -34,10 +34,11 @@ spec:
       containers:
         - name: rabbitmq
           image: rabbitmq
+          imagePullPolicy: Always
           envFrom:
           - secretRef:
               name: rabbitmq-secret         
-          imagePullPolicy: Always
+          
 ---
 apiVersion: v1
 kind: Service
