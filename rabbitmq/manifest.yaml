@@ -1,4 +1,4 @@
-API Version: v1
+apiVersion: v1
 Kind: Secret
 Metadata:
   Name: rabbitmq-secret
@@ -34,7 +34,7 @@ spec:
       containers:
         - name: rabbitmq
           image: rabbitmq:3.8
-          envfrom:
+          envFrom:
             - secretRef:
                 name: rabbitmq-secret         
           imagePullPolicy: Always
