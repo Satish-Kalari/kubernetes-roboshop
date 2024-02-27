@@ -4,10 +4,19 @@ metadata:
   name: mysql-config
   namespace: roboshop
 data:
-  MYSQL_ROOT_PASSWORD: "Um9ib1Nob3BAMQ=="
-  MYSQL_DATABASE: "cities"
-  MYSQL_USER: "shipping"
-  MYSQL_PASSWORD: "RoboShop@1"
+  MYSQL_DATABASE: "cities"  
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+  namespace: roboshop
+type: Opaque
+data:
+  MYSQL_ROOT_PASSWORD: Um9ib1Nob3BAMQ==
+  MYSQL_PASSWORD: Um9ib1Nob3BAMQ==
+  MYSQL_USER: c2hpcHBpbmc=
+
 ---
 apiVersion: v1
 kind: Deployment
@@ -39,24 +48,9 @@ spec:
           envfrom:
             - configMapRef:
                 name: mysql-config
-          ports:
-            - containerPort: 3306
-          volumeMounts:
-            - name: mysql-persistent-storage
-              mountPath: /var/lib/mysql
-          volumes:
-            - name: mysql-persistent-storage
-              persistentVolumeClaim:
-                claimName: mysql-pv-claim
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: mysql-secret
-  namespace: roboshop
-type: Opaque
-data:
-  password: Um9ib1Nob3BAMQ==
+            - secretRef:
+                name: mysql-secret
+         
 ---
 apiVersion: v1
 kind: Service

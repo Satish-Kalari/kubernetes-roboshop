@@ -2,6 +2,9 @@ Once eks cluster is created, we can use kubectl to interact with the cluster.
 
 access workstation via supper putty
 
+# create namespace
+    kubectl apply -f namespace.yaml
+
 # kubens configuration installation (https://github.com/ahmetb/kubectx)
 in home directory of workstation
     sudo git clone https://github.com/ahmetb/kubectx /opt/kubectx
@@ -11,7 +14,7 @@ then cd kubernetes-roboshop/catalogue
     kubens roboshop #this will set roboshop namespace as default, so every time we need not to give -n roboshop
     example: kubectl get pods instead of kubectl get pods -n roboshop
  
-docker login
+docker hub login
     username: satishkalari
     password: satish123
 

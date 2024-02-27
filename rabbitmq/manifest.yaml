@@ -1,3 +1,13 @@
+API Version: v1
+Kind: Secret
+Metadata:
+  Name: rabbitmq-secret
+  Namespace: roboshop
+Type: Opaque
+Data:
+  RABBITMQ_DEFAULT_USER: cm9ib3Nob3A=
+  RABBITMQ_DEFAULT_PASS: cm9ib3Nob3AxMjM=
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,9 +34,9 @@ spec:
       containers:
         - name: rabbitmq
           image: rabbitmq:3.8
-          ports:
-            - containerPort: 5672
-            - containerPort: 15672
+          envfrom:
+            - secretRef:
+                name: rabbitmq-secret         
           imagePullPolicy: Always
 ---
 apiVersion: v1
@@ -45,8 +55,8 @@ spec:
       protocol: TCP
       port: 5672
       targetPort: 5672
-    - name: rabbitmq-mgmt
-      protocol: TCP
-      port: 15672
-      targetPort: 15672
+    # - name: rabbitmq-mgmt
+    #   protocol: TCP
+    #   port: 15672
+    #   targetPort: 15672
 ```
